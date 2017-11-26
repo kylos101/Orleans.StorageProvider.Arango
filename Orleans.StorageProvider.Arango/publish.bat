@@ -1,1 +1,0 @@
-dotnet publish --configuration debug --output c:\temp\nuget.repo
