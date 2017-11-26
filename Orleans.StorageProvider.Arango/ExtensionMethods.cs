@@ -1,25 +1,21 @@
-﻿using Orleans.Runtime.Configuration;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Orleans.Runtime;
 using System.Text.RegularExpressions;
+using Orleans.Runtime;
+using Orleans.Runtime.Configuration;
 
 namespace Orleans.StorageProvider.Arango
 {
     public static class ExtensionMethods
     {
         public static void RegisterArangoStorageProvider(
-            this GlobalConfiguration globalConfig, 
-            string name,
-            string databaseName = "Orleans",
-            string url = "http://localhost:8529",
-            string username = "root",
-            string password = "",
-            bool waitForSync = true,
-            string collectionName = null)
+           this GlobalConfiguration globalConfig,
+           string name,
+           string databaseName = "Orleans",
+           string url = "http://localhost:8529",
+           string username = "root",
+           string password = "",
+           bool waitForSync = true,
+           string collectionName = null)
 
         {
             var properties = new Dictionary<string, string>();
@@ -34,7 +30,6 @@ namespace Orleans.StorageProvider.Arango
             globalConfig.RegisterStorageProvider<ArangoStorageProvider>(name, properties);
 
         }
-
     }
 
     internal static class PrivateExtensions
@@ -44,7 +39,6 @@ namespace Orleans.StorageProvider.Arango
         public static string ToArangoKeyString(this GrainReference grainRef)
         {
             return documentKeyRegex.Replace(grainRef.ToKeyString(), "_");
-
         }
 
         static Regex collectionRegex = new Regex(@"[^a-zA-Z0-9_-]");
@@ -54,4 +48,6 @@ namespace Orleans.StorageProvider.Arango
             return documentKeyRegex.Replace(collectionName, "_");
         }
     }
+
+
 }

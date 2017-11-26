@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Net;
 using Newtonsoft.Json;
 using Orleans.Runtime;
@@ -6,22 +6,14 @@ using Orleans.Serialization;
 
 namespace Orleans.StorageProvider.Arango
 {
-    internal class GrainReferenceInfo
-    {
-        public string Key { get; set; }
-
-        public string Data { get; set; }
-    }
-
     internal class GrainReferenceConverter : JsonConverter
     {
+        JsonSerializerSettings serializerSettings;
+        
         public GrainReferenceConverter(SerializationManager serializationManager, IGrainFactory grainFactory)
         {
-
             serializerSettings = OrleansJsonSerializer.GetDefaultSerializerSettings(serializationManager, grainFactory);
-        }
-
-        JsonSerializerSettings serializerSettings;
+        }        
 
         public override bool CanRead
         {
@@ -57,5 +49,13 @@ namespace Orleans.StorageProvider.Arango
 
             return false;
         }
+
+        internal class GrainReferenceInfo
+        {
+            public string Key { get; set; }
+
+            public string Data { get; set; }
+        }
     }
 }
+
