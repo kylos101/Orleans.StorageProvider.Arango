@@ -1,5 +1,18 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/c6025rmq05xbegvp/branch/master?svg=true)](https://ci.appveyor.com/project/OrleansContrib/orleans-storageprovider-arango/branch/master)
 
+# Upgrade to support .NET Core
+## Current status
+I'm able to boot Orleans .NET Core with this as a provider, but haven't tested beyond that, yet.
+
+## My task list
+- [ ] Verify persistence works for one node
+- [ ] Verify persistence works for many nodes
+- [ ] Get the tests working
+- [ ] Submit a PR to reintegrate
+
+## Considerations
+This is using a preview of Orleans, 2.0.0-preview4-20171025, [coming from here](https://dotnet.myget.org/F/orleans-prerelease).
+
 # ArangoDB Storage Provider for Microsoft Orleans
 
 Can be used to store grain state in an [ArangoDB](https://www.arangodb.com/) database.
